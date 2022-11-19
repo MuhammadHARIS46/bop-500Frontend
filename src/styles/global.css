@@ -1,0 +1,35 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #363535;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(99, 98, 98);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(88, 88, 88);
+}
+
+/* Mapbox logo */
+a.mapboxgl-ctrl-logo {
+  width: 5.4rem !important;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100px #111633 inset !important;
+  box-shadow: 0 0 0 100px #111633 inset !important;
+}

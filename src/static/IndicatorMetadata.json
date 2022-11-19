@@ -1,0 +1,248 @@
+[
+  {
+    "id": "632f1918d48737daf104da88",
+    "composite_id": 335,
+    "indicator_type": "composite",
+    "indicator_label": "Cultural Facilities",
+    "indicator_count_low": 0,
+    "indicator_count_high": 100,
+    "indicator_mean_average": 22,
+    "sub_indicators": [
+      {
+        "id": "632f1918d48737daf104da89",
+        "indicator_id": 3,
+        "composite_id": 335,
+        "indicator_type": "indicator",
+        "indicator_label": "Museums",
+        "indicator_name_api": "Museums",
+        "indictor_field_prefix": "mus",
+        "indicator_count_low": 0,
+        "indicator_count_high": 1479,
+        "indicator_mean_average": 81
+      },
+      {
+        "id": "632f1918d48737daf104da8a",
+        "indicator_id": 5,
+        "composite_id": 335,
+        "indicator_type": "indicator",
+        "indicator_label": "Cinemas",
+        "indicator_name_api": "Cinemas",
+        "indictor_field_prefix": "cin",
+        "indicator_count_low": 0,
+        "indicator_count_high": 319,
+        "indicator_mean_average": 25
+      },
+      {
+        "id": "632f1918d48737daf104da8b",
+        "indicator_id": 6,
+        "composite_id": 335,
+        "indicator_type": "indicator",
+        "indicator_label": "Libraries",
+        "indicator_name_api": "Libraries",
+        "indictor_field_prefix": "lib",
+        "indicator_count_low": 0,
+        "indicator_count_high": 810,
+        "indicator_mean_average": 17
+      },
+      {
+        "id": "632f1918d48737daf104da8c",
+        "indicator_id": 7,
+        "composite_id": 335,
+        "indicator_type": "indicator",
+        "indicator_label": "Concert Halls",
+        "indicator_name_api": "Concert Halls",
+        "indictor_field_prefix": "con",
+        "indicator_count_low": 0,
+        "indicator_count_high": 29,
+        "indicator_mean_average": 4
+      },
+      {
+        "id": "632f1918d48737daf104da8d",
+        "indicator_id": 8,
+        "composite_id": 335,
+        "indicator_type": "indicator",
+        "indicator_label": "Opera Houses",
+        "indicator_name_api": "Opera Houses",
+        "indictor_field_prefix": "ope",
+        "indicator_count_low": 0,
+        "indicator_count_high": 7,
+        "indicator_mean_average": 4
+      },
+      {
+        "id": "632f1918d48737daf104da8e",
+        "composite_id": 335,
+        "indicator_id": 9,
+        "indicator_type": "indicator",
+        "indicator_label": "Theme Parks",
+        "indicator_name_api": "Theme Parks",
+        "indictor_field_prefix": "tp",
+        "indicator_count_low": 0,
+        "indicator_count_high": 90,
+        "indicator_mean_average": 5
+      }
+    ]
+  },
+  {
+    "id": "632f1918d48737daf104da8f",
+    "composite_id": 311,
+    "indicator_type": "composite",
+    "indicator_label": "Heritage Sites",
+    "indicator_count_low": 0,
+    "indicator_count_high": 100,
+    "indicator_mean_average": 26,
+    "sub_indicators": [
+      {
+        "id": "632f1918d48737daf104da90",
+        "indicator_id": 11,
+        "composite_id": 311,
+        "indicator_type": "indicator",
+        "indicator_label": "World Heritage Sites",
+        "indicator_name_api": "World Heritage Sites",
+        "indictor_field_prefix": "whs",
+        "indicator_count_low": 0,
+        "indicator_count_high": 4,
+        "indicator_mean_average": 1
+      }
+    ]
+  },
+  {
+    "id": "632f1918d48737daf104da91",
+    "composite_id": 316,
+    "indicator_type": "composite",
+    "indicator_label": "Accessibility to Culture",
+    "indicator_count_low": 0,
+    "indicator_count_high": 100,
+    "indicator_mean_average": 27,
+    "sub_indicators": [
+      {
+        "id": "632f1918d48737daf104da92",
+        "indicator_id": 16,
+        "composite_id": 316,
+        "indicator_type": "sub_calculation",
+        "indicator_label": "Libraries Per Capita",
+        "indicator_name_api": "Libraries Per Capita",
+        "indictor_field_prefix": "capita",
+        "indicator_count_low": 0,
+        "indicator_count_high": 0,
+        "indicator_mean_average": 0
+      },
+      {
+        "id": "632f1918d48737daf104da93",
+        "indicator_id": 18,
+        "composite_id": 316,
+        "indicator_type": "sub_calculation",
+        "indicator_label": "Museums Per Capita",
+        "indicator_name_api": "Museums Per Capita",
+        "indictor_field_prefix": "capita",
+        "indicator_count_low": 0,
+        "indicator_count_high": 0,
+        "indicator_mean_average": 0
+      },
+      {
+        "id": "632f1918d48737daf104da94",
+        "indicator_id": 51,
+        "composite_id": 316,
+        "indicator_type": "sub_calculation",
+        "indicator_label": "Cinemas Per Capita",
+        "indicator_name_api": "Cinemas Per Capita",
+        "indictor_field_prefix": "capita",
+        "indicator_count_low": 0,
+        "indicator_count_high": 0,
+        "indicator_mean_average": 0
+      },
+      {
+        "id": "632f1918d48737daf104da95",
+        "indicator_id": 52,
+        "composite_id": 316,
+        "indicator_type": "sub_calculation",
+        "indicator_label": "Concert Halls Per Capita",
+        "indicator_name_api": "Concert Halls Per Capita",
+        "indictor_field_prefix": "capita",
+        "indicator_count_low": 0,
+        "indicator_count_high": 0,
+        "indicator_mean_average": 0
+      },
+      {
+        "id": "632f1918d48737daf104da96",
+        "indicator_id": 53,
+        "composite_id": 316,
+        "indicator_type": "sub_calculation",
+        "indicator_label": "Opera Houses Per Capita",
+        "indicator_name_api": "Opera Houses Per Capita",
+        "indictor_field_prefix": "capita",
+        "indicator_count_low": 0,
+        "indicator_count_high": 0,
+        "indicator_mean_average": 0
+      }
+    ]
+  },
+  {
+    "id": "632f1918d48737daf104da97",
+    "composite_id": 329,
+    "indicator_type": "composite",
+    "indicator_label": "Culture and Creative Education",
+    "indicator_count_low": 0,
+    "indicator_count_high": 0,
+    "indicator_mean_average": 0,
+    "sub_indicators": [
+      {
+        "id": "632f1918d48737daf104da98",
+        "indicator_id": 29,
+        "composite_id": 329,
+        "indicator_type": "indicator",
+        "indicator_label": "HE CCI ESTABLISHMENTS",
+        "indicator_name_api": "CCI He",
+        "indictor_field_prefix": "whds",
+        "indicator_count_low": 0,
+        "indicator_count_high": 26,
+        "indicator_mean_average": 2
+      }
+    ]
+  },
+  {
+    "id": "632f1918d48737daf104da99",
+    "composite_id": 339,
+    "indicator_type": "composite",
+    "indicator_label": "Creative Employment",
+    "indicator_count_low": 0,
+    "indicator_count_high": 0,
+    "indicator_mean_average": 0,
+    "sub_indicators": [
+      {
+        "id": "632f1918d48737daf104da9a",
+        "indicator_id": 39,
+        "composite_id": 339,
+        "indicator_type": "indicator",
+        "indicator_label": "% FTE CCIs Jobs In City",
+        "indicator_name_api": "CCI Jobs",
+        "indictor_field_prefix": "cci_jobs",
+        "indicator_count_low": 0,
+        "indicator_count_high": 0,
+        "indicator_mean_average": 0
+      }
+    ]
+  },
+  {
+    "id": "632f1918d48737daf104da9b",
+    "composite_id": 344,
+    "indicator_type": "composite",
+    "indicator_label": "Creative Innovation",
+    "indicator_count_low": 0,
+    "indicator_count_high": 0,
+    "indicator_mean_average": 0,
+    "sub_indicators": [
+      {
+        "id": "632f1918d48737daf104da9c",
+        "indicator_id": 44,
+        "composite_id": 344,
+        "indicator_type": "indicator",
+        "indicator_label": "CITY % OF CCI START-UPS",
+        "indicator_name_api": "Startups",
+        "indictor_field_prefix": "startup",
+        "indicator_count_low": 0,
+        "indicator_count_high": 100,
+        "indicator_mean_average": 76
+      }
+    ]
+  }
+]

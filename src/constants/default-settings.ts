@@ -1,0 +1,1796 @@
+import { KEPLER_INSTANCE_IDS } from "@/enums/kepler.enums";
+import { config } from "@config";
+import { DefaultSetting } from "./default-settings.d";
+
+export enum KEPLER_LAYER_DATA_IDS {
+  CITY_DOT = "dpufh0wh",
+  CCI_INNOVATION = "zl5jwg3kh",
+  CCI_JOBS = "vzp6jcrai",
+  CCI_UNIVERSITIES = "0ogrsoffr",
+  WORLD_HERITAGE_SITES = "qgih2zfxl",
+  MUSEUMS = "7e3cjmasl",
+  OPERA_HOUSE = "xrqx6juur7",
+  THEME_PARKS = "davr8fn5",
+  MOVIE_THEATRES = "5q0dma15p",
+  CONCERT_HALL = "a7hos5bq8",
+  PUBLIC_LIBRARIES = "vpandedb6",
+  INNER_BOUNDARY = "3u5xjjo4g",
+  OUTER_BOUNDARY = "839w9s3za",
+}
+
+/**
+ * @about: Default settings for the application.
+ */
+const defaultSettings: DefaultSetting = {
+  Kepler: {
+    mapId: KEPLER_INSTANCE_IDS.MAP,
+    mapboxApiAccessToken: config.mapBoxToken,
+    viewState: {
+      zoom: 0,
+      latitude: 51.50583848941366,
+      longitude: -0.20454776190752524,
+    },
+    alwaysVisibleLayerIds: [
+      KEPLER_LAYER_DATA_IDS.CITY_DOT,
+      KEPLER_LAYER_DATA_IDS.INNER_BOUNDARY,
+      KEPLER_LAYER_DATA_IDS.OUTER_BOUNDARY,
+    ],
+  },
+};
+
+export const LevelOneCityDotsLayer = (
+  label: string,
+  dataId: string,
+  layerId: string
+) => ({
+  label,
+  id: layerId,
+  type: "point",
+  config: {
+    dataId: dataId,
+    label: "Cultural Facilities",
+    color: [26, 23, 36],
+    highlightColor: [252, 242, 26, 255],
+    columns: {
+      lat: "address_latitude",
+      lng: "address_longitude",
+      altitude: null,
+    },
+    isVisible: true,
+    visConfig: {
+      radius: 7.8,
+      fixedRadius: false,
+      opacity: 1,
+      outline: true,
+      thickness: 0.5,
+      strokeColor: [232, 250, 250],
+      colorRange: {
+        name: "Global Warming",
+        type: "sequential",
+        category: "Uber",
+        colors: [
+          "#5A1846",
+          "#900C3F",
+          "#C70039",
+          "#E3611C",
+          "#F1920E",
+          "#FFC300",
+        ],
+      },
+      strokeColorRange: {
+        name: "Global Warming",
+        type: "sequential",
+        category: "Uber",
+        colors: [
+          "#5A1846",
+          "#900C3F",
+          "#C70039",
+          "#E3611C",
+          "#F1920E",
+          "#FFC300",
+        ],
+      },
+      radiusRange: [0, 50],
+      filled: false,
+    },
+    hidden: false,
+    textLabel: [
+      {
+        field: null,
+        color: [255, 255, 255],
+        size: 18,
+        offset: [0, 0],
+        anchor: "start",
+        alignment: "center",
+      },
+    ],
+  },
+  visualChannels: {
+    colorField: null,
+    colorScale: "quantile",
+    strokeColorField: null,
+    strokeColorScale: "quantile",
+    sizeField: null,
+    sizeScale: "linear",
+  },
+});
+
+export const cityDotsLayer = (dataId: string) => ({
+  version: "v1",
+  config: {
+    visState: {
+      filters: [],
+      layers: [
+        {
+          id: "1vd26m",
+          type: "point",
+          config: {
+            dataId: dataId,
+            label: "Bop500 Index",
+            color: [246, 209, 138],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "city_latitude",
+              lng: "city_longitude",
+              altitude: null,
+            },
+            isVisible: true,
+            visConfig: {
+              radius: 13.6,
+              fixedRadius: false,
+              opacity: 0.12,
+              outline: true,
+              thickness: 7.8,
+              strokeColor: null,
+              colorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#F9E200"],
+              },
+              strokeColorRange: {
+                name: "Ice And Fire",
+                type: "diverging",
+                category: "Uber",
+                colors: [
+                  "#0198BD",
+                  "#49E3CE",
+                  "#E8FEB5",
+                  "#FEEDB1",
+                  "#FEAD54",
+                  "#D50255",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: false,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: {
+              name: "country_code",
+              type: "string",
+            },
+            colorScale: "ordinal",
+            strokeColorField: {
+              name: "country_code",
+              type: "string",
+            },
+            strokeColorScale: "ordinal",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "stlijds",
+          type: "point",
+          config: {
+            dataId: dataId,
+            label: "City Dot",
+            color: [246, 209, 138],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "city_latitude",
+              lng: "city_longitude",
+              altitude: null,
+            },
+            isVisible: true,
+            visConfig: {
+              radius: 5.8,
+              fixedRadius: false,
+              opacity: 1,
+              outline: true,
+              thickness: 2,
+              strokeColor: [253, 236, 0],
+              colorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#F9E200"],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: true,
+            },
+            hidden: false,
+            textLabel: [],
+          },
+          visualChannels: {
+            colorField: null,
+            colorScale: "quantile",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+      ],
+      interactionConfig: {
+        tooltip: {
+          fieldsToShow: {
+            [dataId]: [
+              {
+                name: "city_id",
+                format: null,
+              },
+              {
+                name: "city_name",
+                format: null,
+              },
+              {
+                name: "country_name",
+                format: null,
+              },
+              {
+                name: "city_latitude",
+                format: null,
+              },
+              {
+                name: "city_longitude",
+                format: null,
+              },
+              {
+                name: "city_administrative_level",
+                format: null,
+              },
+              {
+                name: "state_code",
+                format: null,
+              },
+              {
+                name: "country_code",
+                format: null,
+              },
+              {
+                name: "state_name",
+                format: null,
+              },
+            ],
+          },
+          compareMode: false,
+          compareType: "absolute",
+          enabled: true,
+        },
+        brush: {
+          size: 0.5,
+          enabled: false,
+        },
+        geocoder: {
+          enabled: false,
+        },
+        coordinate: {
+          enabled: false,
+        },
+      },
+      layerBlending: "normal",
+      splitMaps: [],
+      animationConfig: {
+        currentTime: null,
+        speed: 1,
+      },
+    },
+    mapState: {
+      bearing: 0,
+      dragRotate: false,
+      latitude: 51.50583848941366,
+      longitude: -0.20454776190752524,
+      pitch: 0,
+      zoom: 10.105310563386142,
+      isSplit: false,
+    },
+    mapStyle: {
+      styleType: "dark",
+      topLayerGroups: {
+        label: true,
+      },
+      visibleLayerGroups: {
+        label: false,
+        road: true,
+        border: false,
+        building: false,
+        water: true,
+        land: true,
+        "3d building": false,
+      },
+      threeDBuildingColor: [
+        9.665468314072013, 17.18305478057247, 31.1442867897876,
+      ],
+      mapStyles: {},
+    },
+  },
+});
+
+export const outerLayer = (label: string, dataId: string, layerId: string) => ({
+  id: layerId,
+  type: "geojson",
+  config: {
+    dataId: dataId,
+    label: label,
+    color: [26, 23, 36],
+    highlightColor: [252, 242, 26, 255],
+    columns: {
+      geojson: "_geojson",
+    },
+    isVisible: true,
+    visConfig: {
+      opacity: 0.1,
+      strokeOpacity: 0.8,
+      thickness: 0.7,
+      strokeColor: [16, 129, 136],
+      colorRange: {
+        name: "Global Warming",
+        type: "sequential",
+        category: "Uber",
+        colors: [
+          "#5A1846",
+          "#900C3F",
+          "#C70039",
+          "#E3611C",
+          "#F1920E",
+          "#FFC300",
+        ],
+      },
+      strokeColorRange: {
+        name: "Global Warming",
+        type: "sequential",
+        category: "Uber",
+        colors: [
+          "#5A1846",
+          "#900C3F",
+          "#C70039",
+          "#E3611C",
+          "#F1920E",
+          "#FFC300",
+        ],
+      },
+      radius: 10,
+      sizeRange: [0, 10],
+      radiusRange: [0, 50],
+      heightRange: [0, 500],
+      elevationScale: 5,
+      enableElevationZoomFactor: true,
+      stroked: true,
+      filled: true,
+      enable3d: false,
+      wireframe: false,
+    },
+    hidden: false,
+    textLabel: [
+      {
+        field: null,
+        color: [255, 255, 255],
+        size: 18,
+        offset: [0, 0],
+        anchor: "start",
+        alignment: "center",
+      },
+    ],
+  },
+  visualChannels: {
+    colorField: null,
+    colorScale: "quantile",
+    strokeColorField: null,
+    strokeColorScale: "quantile",
+    sizeField: null,
+    sizeScale: "linear",
+    heightField: null,
+    heightScale: "linear",
+    radiusField: null,
+    radiusScale: "linear",
+  },
+});
+
+export const configKepler = {
+  version: "v1",
+  config: {
+    visState: {
+      filters: [],
+      layers: [
+        {
+          id: "1vd26m",
+          type: "point",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.CITY_DOT,
+            label: "Bop500 Index",
+            color: [246, 209, 138],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "city_latitude",
+              lng: "city_longitude",
+              altitude: null,
+            },
+            isVisible: true,
+            visConfig: {
+              radius: 13.6,
+              fixedRadius: false,
+              opacity: 0.12,
+              outline: true,
+              thickness: 7.8,
+              strokeColor: null,
+              colorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#F9E200"],
+              },
+              strokeColorRange: {
+                name: "Ice And Fire",
+                type: "diverging",
+                category: "Uber",
+                colors: [
+                  "#0198BD",
+                  "#49E3CE",
+                  "#E8FEB5",
+                  "#FEEDB1",
+                  "#FEAD54",
+                  "#D50255",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: false,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: {
+              name: "country_code",
+              type: "string",
+            },
+            colorScale: "ordinal",
+            strokeColorField: {
+              name: "country_code",
+              type: "string",
+            },
+            strokeColorScale: "ordinal",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "stlijds",
+          type: "point",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.CITY_DOT,
+            label: "City Dot",
+            color: [246, 209, 138],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "city_latitude",
+              lng: "city_longitude",
+              altitude: null,
+            },
+            isVisible: true,
+            visConfig: {
+              radius: 5.8,
+              fixedRadius: false,
+              opacity: 1,
+              outline: true,
+              thickness: 2,
+              strokeColor: [253, 236, 0],
+              colorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#F9E200"],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: true,
+            },
+            hidden: false,
+            textLabel: [],
+          },
+          visualChannels: {
+            colorField: null,
+            colorScale: "quantile",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "622yk3s",
+          type: "point",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.CCI_INNOVATION,
+            label: "CCI Innovation",
+            color: [136, 87, 44],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "address_latitude",
+              lng: "address_longitude",
+              altitude: null,
+            },
+            isVisible: false,
+            visConfig: {
+              radius: 6.5,
+              fixedRadius: false,
+              opacity: 0.8,
+              outline: false,
+              thickness: 2,
+              strokeColor: null,
+              colorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#b23ffd", "#4daf4a"],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: true,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: {
+              name: "startup_cci_related",
+              type: "integer",
+            },
+            colorScale: "quantile",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "31g6i45",
+          type: "point",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.CCI_JOBS,
+            label: "CCI Jobs",
+            color: [195, 40, 153],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "city_latitude",
+              lng: "city_longitude",
+              altitude: null,
+            },
+            isVisible: true,
+            visConfig: {
+              radius: 18.8,
+              fixedRadius: false,
+              opacity: 0.8,
+              outline: false,
+              thickness: 2,
+              strokeColor: null,
+              colorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: true,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: null,
+            colorScale: "quantile",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "n03q8g4",
+          type: "point",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.CCI_UNIVERSITIES,
+            label: "CCI Universities",
+            color: [166, 143, 126],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "address_latitude",
+              lng: "address_longitude",
+              altitude: null,
+            },
+            isVisible: false,
+            visConfig: {
+              radius: 12.1,
+              fixedRadius: false,
+              opacity: 0.8,
+              outline: false,
+              thickness: 2,
+              strokeColor: null,
+              colorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: true,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: null,
+            colorScale: "quantile",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "vvd5gba",
+          type: "point",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.WORLD_HERITAGE_SITES,
+            label: "World Heritage Sites",
+            color: [231, 159, 213],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "address_latitude",
+              lng: "address_longitude",
+              altitude: null,
+            },
+            isVisible: false,
+            visConfig: {
+              radius: 12.3,
+              fixedRadius: false,
+              opacity: 0.8,
+              outline: false,
+              thickness: 2,
+              strokeColor: null,
+              colorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#fcc0d3", "#fa9fcf"],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: true,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: {
+              name: "category_name_en",
+              type: "string",
+            },
+            colorScale: "ordinal",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "51u3gx9",
+          type: "point",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.MUSEUMS,
+            label: "Museums",
+            color: [136, 87, 44],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "address_latitude",
+              lng: "address_longitude",
+              altitude: null,
+            },
+            isVisible: false,
+            visConfig: {
+              radius: 5.2,
+              fixedRadius: false,
+              opacity: 0.8,
+              outline: false,
+              thickness: 2,
+              strokeColor: null,
+              colorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#F1920E", "#FFC300"],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: true,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: {
+              name: "category_name_en",
+              type: "string",
+            },
+            colorScale: "ordinal",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "ihpug6",
+          type: "point",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.OPERA_HOUSE,
+            label: "Opera house",
+            color: [179, 173, 158],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "address_latitude",
+              lng: "address_longitude",
+              altitude: null,
+            },
+            isVisible: false,
+            visConfig: {
+              radius: 13,
+              fixedRadius: false,
+              opacity: 0.8,
+              outline: false,
+              thickness: 2,
+              strokeColor: null,
+              colorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#E6FAFA", "#AAD7DA"],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: true,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: {
+              name: "category_name_en",
+              type: "string",
+            },
+            colorScale: "ordinal",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "62n8j6r",
+          type: "point",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.THEME_PARKS,
+            label: "Theme Parks",
+            color: [179, 173, 158],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "address_latitude",
+              lng: "address_longitude",
+              altitude: null,
+            },
+            isVisible: false,
+            visConfig: {
+              radius: 15.6,
+              fixedRadius: false,
+              opacity: 0.8,
+              outline: false,
+              thickness: 2,
+              strokeColor: null,
+              colorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#addd8e", "#78c679", "#31a354"],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: true,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: {
+              name: "category_name_en",
+              type: "string",
+            },
+            colorScale: "ordinal",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "xotgphf",
+          type: "point",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.MOVIE_THEATRES,
+            label: "Movie Theatres",
+            color: [197, 21, 74],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "address_latitude",
+              lng: "address_longitude",
+              altitude: null,
+            },
+            isVisible: false,
+            visConfig: {
+              radius: 5.8,
+              fixedRadius: false,
+              opacity: 0.8,
+              outline: true,
+              thickness: 2,
+              strokeColor: [218, 0, 0],
+              colorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#BD0143", "#D50255"],
+              },
+              strokeColorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#D50255", "#BD0143 "],
+                reversed: true,
+              },
+              radiusRange: [0, 50],
+              filled: true,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: null,
+            colorScale: "quantile",
+            strokeColorField: {
+              name: "category_name_en",
+              type: "string",
+            },
+            strokeColorScale: "ordinal",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "vudl1zi",
+          type: "point",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.CONCERT_HALL,
+            label: "Concert Hall",
+            color: [23, 184, 190],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "address_latitude",
+              lng: "address_longitude",
+              altitude: null,
+            },
+            isVisible: false,
+            visConfig: {
+              radius: 14.3,
+              fixedRadius: false,
+              opacity: 0.8,
+              outline: false,
+              thickness: 2,
+              strokeColor: null,
+              colorRange: {
+                name: "ColorBrewer Greys-3",
+                type: "singlehue",
+                category: "ColorBrewer",
+                colors: ["#f0f0f0", "#bdbdbd", "#636363"],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: true,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: {
+              name: "category_name_en",
+              type: "string",
+            },
+            colorScale: "ordinal",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "dqlurp9",
+          type: "point",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.PUBLIC_LIBRARIES,
+            label: "Public Libraries",
+            color: [130, 154, 227],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              lat: "address_latitude",
+              lng: "address_longitude",
+              altitude: null,
+            },
+            isVisible: false,
+            visConfig: {
+              radius: 8.4,
+              fixedRadius: false,
+              opacity: 0.8,
+              outline: false,
+              thickness: 2,
+              strokeColor: null,
+              colorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#75BBC1", "#4BA7AF", "#00939C"],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radiusRange: [0, 50],
+              filled: true,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: {
+              name: "category_name_en",
+              type: "string",
+            },
+            colorScale: "ordinal",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+          },
+        },
+        {
+          id: "cedl6ai",
+          type: "geojson",
+          config: {
+            dataId: KEPLER_LAYER_DATA_IDS.INNER_BOUNDARY,
+            label: "Inner Boundary",
+            color: [16, 59, 73],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              geojson: "_geojson",
+            },
+            isVisible: true,
+            visConfig: {
+              opacity: 0.01,
+              strokeOpacity: 0.03,
+              thickness: 0.5,
+              strokeColor: [47, 197, 204],
+              colorRange: {
+                name: "Custom Palette",
+                type: "custom",
+                category: "Custom",
+                colors: ["#020113"],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radius: 10,
+              sizeRange: [0, 10],
+              radiusRange: [0, 50],
+              heightRange: [0, 500],
+              elevationScale: 5,
+              enableElevationZoomFactor: true,
+              stroked: true,
+              filled: true,
+              enable3d: false,
+              wireframe: false,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: {
+              name: "admin_level",
+              type: "integer",
+            },
+            colorScale: "quantile",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+            heightField: null,
+            heightScale: "linear",
+            radiusField: null,
+            radiusScale: "linear",
+          },
+        },
+        {
+          id: "z0v01xi",
+          type: "geojson",
+          config: {
+            dataId: [KEPLER_LAYER_DATA_IDS.OUTER_BOUNDARY],
+            label: "Outer Boundary",
+            color: [26, 23, 36],
+            highlightColor: [252, 242, 26, 255],
+            columns: {
+              geojson: "_geojson",
+            },
+            isVisible: true,
+            visConfig: {
+              opacity: 0.1,
+              strokeOpacity: 0.8,
+              thickness: 0.7,
+              strokeColor: [16, 129, 136],
+              colorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              strokeColorRange: {
+                name: "Global Warming",
+                type: "sequential",
+                category: "Uber",
+                colors: [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300",
+                ],
+              },
+              radius: 10,
+              sizeRange: [0, 10],
+              radiusRange: [0, 50],
+              heightRange: [0, 500],
+              elevationScale: 5,
+              enableElevationZoomFactor: true,
+              stroked: true,
+              filled: true,
+              enable3d: false,
+              wireframe: false,
+            },
+            hidden: false,
+            textLabel: [
+              {
+                field: null,
+                color: [255, 255, 255],
+                size: 18,
+                offset: [0, 0],
+                anchor: "start",
+                alignment: "center",
+              },
+            ],
+          },
+          visualChannels: {
+            colorField: null,
+            colorScale: "quantile",
+            strokeColorField: null,
+            strokeColorScale: "quantile",
+            sizeField: null,
+            sizeScale: "linear",
+            heightField: null,
+            heightScale: "linear",
+            radiusField: null,
+            radiusScale: "linear",
+          },
+        },
+      ],
+      interactionConfig: {
+        tooltip: {
+          fieldsToShow: {
+            [KEPLER_LAYER_DATA_IDS.OUTER_BOUNDARY]: [
+              {
+                name: "name",
+                format: null,
+              },
+              {
+                name: "admin_level",
+                format: null,
+              },
+              {
+                name: "boundary",
+                format: null,
+              },
+              {
+                name: "wikidata",
+                format: null,
+              },
+            ],
+            hdka6f24s: [
+              {
+                name: "name_en",
+                format: null,
+              },
+              {
+                name: "city_name",
+                format: null,
+              },
+              {
+                name: "category_name_en",
+                format: null,
+              },
+              {
+                name: "state_name",
+                format: null,
+              },
+              {
+                name: "tp_brand",
+                format: null,
+              },
+            ],
+            [KEPLER_LAYER_DATA_IDS.OPERA_HOUSE]: [
+              {
+                name: "name_en",
+                format: null,
+              },
+              {
+                name: "category_name_en",
+                format: null,
+              },
+              {
+                name: "categories",
+                format: null,
+              },
+              {
+                name: "city_name",
+                format: null,
+              },
+              {
+                name: "state_name",
+                format: null,
+              },
+              {
+                name: "reviewsCount",
+                format: null,
+              },
+            ],
+            [KEPLER_LAYER_DATA_IDS.MOVIE_THEATRES]: [
+              {
+                name: "name_en",
+                format: null,
+              },
+              {
+                name: "category_name_en",
+                format: null,
+              },
+              {
+                name: "categories",
+                format: null,
+              },
+              {
+                name: "cityName",
+                format: null,
+              },
+              {
+                name: "state_name",
+                format: null,
+              },
+              {
+                name: "reviewsCount",
+                format: null,
+              },
+            ],
+            [KEPLER_LAYER_DATA_IDS.MUSEUMS]: [
+              {
+                name: "name_en",
+                format: null,
+              },
+              {
+                name: "category_name_en",
+                format: null,
+              },
+              {
+                name: "categories",
+                format: null,
+              },
+              {
+                name: "cityName",
+                format: null,
+              },
+              {
+                name: "reviewsCount",
+                format: null,
+              },
+            ],
+            [KEPLER_LAYER_DATA_IDS.PUBLIC_LIBRARIES]: [
+              {
+                name: "name_en",
+                format: null,
+              },
+              {
+                name: "category_name_en",
+                format: null,
+              },
+              {
+                name: "categories",
+                format: null,
+              },
+              {
+                name: "cityName",
+                format: null,
+              },
+              {
+                name: "state_name",
+                format: null,
+              },
+              {
+                name: "reviewsCount",
+                format: null,
+              },
+            ],
+            [KEPLER_LAYER_DATA_IDS.CONCERT_HALL]: [
+              {
+                name: "name_en",
+                format: null,
+              },
+              {
+                name: "category_name_en",
+                format: null,
+              },
+              {
+                name: "categories",
+                format: null,
+              },
+              {
+                name: "cityName",
+                format: null,
+              },
+              {
+                name: "state_name",
+                format: null,
+              },
+              {
+                name: "reviewsCount",
+                format: null,
+              },
+            ],
+            [KEPLER_LAYER_DATA_IDS.CITY_DOT]: [
+              {
+                name: "city_id",
+                format: null,
+              },
+              {
+                name: "city_name",
+                format: null,
+              },
+              {
+                name: "country_name",
+                format: null,
+              },
+              {
+                name: "city_latitude",
+                format: null,
+              },
+              {
+                name: "city_longitude",
+                format: null,
+              },
+              {
+                name: "city_administrative_level",
+                format: null,
+              },
+              {
+                name: "state_code",
+                format: null,
+              },
+              {
+                name: "country_code",
+                format: null,
+              },
+              {
+                name: "state_name",
+                format: null,
+              },
+            ],
+            [KEPLER_LAYER_DATA_IDS.WORLD_HERITAGE_SITES]: [
+              {
+                name: "name_en",
+                format: null,
+              },
+              {
+                name: "category_name_en",
+                format: null,
+              },
+              {
+                name: "cityName",
+                format: null,
+              },
+              {
+                name: "country_name",
+                format: null,
+              },
+            ],
+            [KEPLER_LAYER_DATA_IDS.THEME_PARKS]: [
+              {
+                name: "category_name_en",
+                format: null,
+              },
+              {
+                name: "name_en",
+                format: null,
+              },
+              {
+                name: "city_name_district",
+                format: null,
+              },
+              {
+                name: "cityName_district",
+                format: null,
+              },
+            ],
+            [KEPLER_LAYER_DATA_IDS.CCI_UNIVERSITIES]: [
+              {
+                name: "name_en",
+                format: null,
+              },
+              {
+                name: "whds_cci_fields_of_study",
+                format: null,
+              },
+              {
+                name: "whds_number_of_subjects",
+                format: null,
+              },
+              {
+                name: "whds_cci_number_of_related_subjects",
+                format: null,
+              },
+              {
+                name: "whds_cci_%_fields_of_study",
+                format: null,
+              },
+            ],
+            [KEPLER_LAYER_DATA_IDS.CCI_JOBS]: [
+              {
+                name: "cityName",
+                format: null,
+              },
+              {
+                name: "state_name",
+                format: null,
+              },
+              {
+                name: "country_name",
+                format: null,
+              },
+              {
+                name: "cci_jobs_percentage",
+                format: null,
+              },
+              {
+                name: "cci_jobs_value",
+                format: null,
+              },
+              {
+                name: "cci_jobs_year",
+                format: null,
+              },
+              {
+                name: "cci_workforce_value",
+                format: null,
+              },
+              {
+                name: "cci_workforce_year",
+                format: null,
+              },
+              {
+                name: "data_level",
+                format: null,
+              },
+              {
+                name: "cityId",
+                format: null,
+              },
+              {
+                name: "city_latitude",
+                format: null,
+              },
+              {
+                name: "city_longitude",
+                format: null,
+              },
+            ],
+            [KEPLER_LAYER_DATA_IDS.INNER_BOUNDARY]: [
+              {
+                name: "ISO3166-2",
+                format: null,
+              },
+              {
+                name: "admin_level",
+                format: null,
+              },
+              {
+                name: "boundary",
+                format: null,
+              },
+              {
+                name: "council_name",
+                format: null,
+              },
+              {
+                name: "name:en",
+                format: null,
+              },
+              {
+                name: "designation",
+                format: null,
+              },
+              {
+                name: "source",
+                format: null,
+              },
+            ],
+            [KEPLER_LAYER_DATA_IDS.CCI_INNOVATION]: [
+              {
+                name: "startup_cci_related",
+                format: null,
+              },
+              {
+                name: "startup_5years",
+                format: null,
+              },
+              {
+                name: "category_name_en",
+                format: null,
+              },
+            ],
+          },
+          compareMode: false,
+          compareType: "absolute",
+          enabled: true,
+        },
+        brush: {
+          size: 0.5,
+          enabled: false,
+        },
+        geocoder: {
+          enabled: false,
+        },
+        coordinate: {
+          enabled: false,
+        },
+      },
+      layerBlending: "normal",
+      splitMaps: [],
+      animationConfig: {
+        currentTime: null,
+        speed: 1,
+      },
+    },
+    mapState: {
+      bearing: 0,
+      dragRotate: false,
+      latitude: 51.50583848941366,
+      longitude: -0.20454776190752524,
+      pitch: 0,
+      zoom: 10.105310563386142,
+      isSplit: false,
+    },
+    mapStyle: {
+      styleType: "dark",
+      topLayerGroups: {
+        label: true,
+      },
+      visibleLayerGroups: {
+        label: false,
+        road: true,
+        border: false,
+        building: false,
+        water: true,
+        land: true,
+        "3d building": false,
+      },
+      threeDBuildingColor: [
+        9.665468314072013, 17.18305478057247, 31.1442867897876,
+      ],
+      mapStyles: {},
+    },
+  },
+};
+
+export default defaultSettings;

@@ -1,0 +1,499 @@
+import { useState, useEffect, useCallback } from "react";
+import { Grid } from "@mui/material";
+import { useDispatch } from "@/store";
+import CircularProgressCard from "@/components/CircularProgressCard";
+import { ICityIndicatorType } from "@/types/CityType";
+import { useSelector } from "@/store";
+import { setActiveSubcategoryTab } from "@/store/cities";
+import { getColorCode } from "@/utils/bop500Cities/cityIndicatorColorCodes";
+import { updateLayersVisibility } from "../../../helpers/index";
+import { TooltipTitleContainer } from "@/components/Bop500FooterContainer/SmallCardTooltipTitleContainer";
+import { KEPLER_INSTANCE_IDS } from "@/enums/kepler.enums";
+import { DefaultKeplerState } from "@/types/kepler.types";
+import { KEPLER_LAYER_DATA_IDS } from "@/constants/default-settings";
+
+const SubCategorySmallCards = ({
+  activeCategoryTab,
+}: {
+  activeCategoryTab: string;
+}) => {
+  const [cityIndicators, setCityIndicators] = useState<ICityIndicatorType[]>(
+    []
+  );
+  const {
+    activeCityTab,
+    bop500TableData,
+    activeSubcategoryTab,
+    selectedCities,
+  } = useSelector((state) => state.cities);
+
+  const { visState, isPaid } = useSelector((state) => ({
+    visState: (state.keplerGl[KEPLER_INSTANCE_IDS.MAP] || DefaultKeplerState)
+      .visState,
+    isPaid: state.authState.isPaid,
+  }));
+
+  const dispatch = useDispatch();
+
+  const getActiveCityName = useCallback(
+    () =>
+      selectedCities?.find(({ city_id }) => city_id === activeCityTab)
+        ?.city_name ?? "",
+    [activeCityTab]
+  );
+
+  useEffect(() => {
+    const cityData = bop500TableData?.find(
+      ({ city_id }) => city_id === activeCityTab
+    );
+    setCityIndicators(cityData?.cityIndicators || []);
+  }, [activeCityTab, bop500TableData, selectedCities]);
+
+  return (
+    <Grid
+      container
+      spacing={4}
+      p={2}
+      sx={{
+        flexWrap: "nowrap",
+        overflowX: "auto",
+      }}
+    >
+      {activeCategoryTab === "Cultural Facilities" && (
+        <>
+          <Grid item xs={6} md={4} lg={3}>
+            <CircularProgressCard
+              title="Museums"
+              progressbarValue={isPaid ? 43 : 100}
+              value={
+                isPaid
+                  ? cityIndicators?.find(
+                      ({ indicatorName }) => indicatorName === "Museums"
+                    )?.count
+                  : `Buy ${getActiveCityName()} Data`
+              }
+              valueColor={isPaid ? "" : "#44caf7"}
+              icon="Up"
+              onClick={() => {
+                if (isPaid) {
+                  dispatch(setActiveSubcategoryTab("Museums"));
+                  updateLayersVisibility(
+                    [KEPLER_LAYER_DATA_IDS.MUSEUMS],
+                    visState.layers
+                  );
+                }
+              }}
+              isActive={activeSubcategoryTab === "Museums"}
+              linearProgressColor={getColorCode("Museums", isPaid)}
+              tooltipTitle={
+                <TooltipTitleContainer
+                  buttonType="ReadMore"
+                  category="Cultural Facilities"
+                  title="No. of museums per capita"
+                  description="Number of museums per inhabitants living within the city boundaries"
+                />
+              }
+            />
+          </Grid>
+          <Grid item xs={6} md={4} lg={3}>
+            <CircularProgressCard
+              title="Movie Theatres"
+              progressbarValue={isPaid ? 76 : 100}
+              value={
+                isPaid
+                  ? cityIndicators?.find(
+                      ({ indicatorName }) => indicatorName === "Cinemas"
+                    )?.count
+                  : `Buy ${getActiveCityName()} Data`
+              }
+              valueColor={isPaid ? "" : "#44caf7"}
+              icon="Up"
+              onClick={() => {
+                if (isPaid) {
+                  dispatch(setActiveSubcategoryTab("Movie Theatres"));
+                  updateLayersVisibility(
+                    [KEPLER_LAYER_DATA_IDS.MOVIE_THEATRES],
+                    visState.layers
+                  );
+                }
+              }}
+              isActive={activeSubcategoryTab === "Movie Theatres"}
+              linearProgressColor={getColorCode("Movie Theatres", isPaid)}
+              tooltipTitle={
+                <TooltipTitleContainer
+                  buttonType="ReadMore"
+                  category="Cultural Facilities"
+                  title="No. of cinemas per capita"
+                  description="Any cinema based within the city's boundaries."
+                />
+              }
+            />
+          </Grid>
+          <Grid item xs={6} md={4} lg={3}>
+            <CircularProgressCard
+              title="Public Libraries"
+              progressbarValue={isPaid ? 55 : 100}
+              value={
+                isPaid
+                  ? cityIndicators?.find(
+                      ({ indicatorName }) => indicatorName === "Libraries"
+                    )?.count
+                  : `Buy ${getActiveCityName()} Data`
+              }
+              valueColor={isPaid ? "" : "#44caf7"}
+              icon="Up"
+              onClick={() => {
+                if (isPaid) {
+                  dispatch(setActiveSubcategoryTab("Public Libraries"));
+                  updateLayersVisibility(
+                    [KEPLER_LAYER_DATA_IDS.PUBLIC_LIBRARIES],
+                    visState.layers
+                  );
+                }
+              }}
+              isActive={activeSubcategoryTab === "Public Libraries"}
+              linearProgressColor={getColorCode("Public Libraries", isPaid)}
+              tooltipTitle={
+                <TooltipTitleContainer
+                  buttonType="ReadMore"
+                  category="Cultural Facilities"
+                  title="No. of libraries per capita"
+                  description="Any publicly accessible library based within the city's boundaries."
+                />
+              }
+            />
+          </Grid>
+          <Grid item xs={6} md={4} lg={3}>
+            <CircularProgressCard
+              title="Opera Houses"
+              progressbarValue={isPaid ? 66 : 100}
+              value={
+                isPaid
+                  ? cityIndicators?.find(
+                      ({ indicatorName }) => indicatorName === "Opera Houses"
+                    )?.count
+                  : `Buy ${getActiveCityName()} Data`
+              }
+              valueColor={isPaid ? "" : "#44caf7"}
+              icon="Up"
+              onClick={() => {
+                if (isPaid) {
+                  dispatch(setActiveSubcategoryTab("Opera Houses"));
+                  updateLayersVisibility(
+                    [KEPLER_LAYER_DATA_IDS.OPERA_HOUSE],
+                    visState.layers
+                  );
+                }
+              }}
+              isActive={activeSubcategoryTab === "Opera Houses"}
+              linearProgressColor={getColorCode("Opera Houses", isPaid)}
+              tooltipTitle={
+                <TooltipTitleContainer
+                  buttonType="ReadMore"
+                  category="Cultural Facilities"
+                  title="No. of all live music venues"
+                  description="Any opera house based within the city's boundaries."
+                />
+              }
+            />
+          </Grid>
+          <Grid item xs={6} md={4} lg={3}>
+            <CircularProgressCard
+              title="Concert Halls"
+              progressbarValue={isPaid ? 83 : 100}
+              value={
+                isPaid
+                  ? cityIndicators?.find(
+                      ({ indicatorName }) => indicatorName === "Concert Halls"
+                    )?.count
+                  : `Buy ${getActiveCityName()} Data`
+              }
+              icon="Up"
+              valueColor={isPaid ? "" : "#44caf7"}
+              onClick={() => {
+                if (isPaid) {
+                  dispatch(setActiveSubcategoryTab("Concert Halls"));
+                  updateLayersVisibility(
+                    [KEPLER_LAYER_DATA_IDS.CONCERT_HALL],
+                    visState.layers
+                  );
+                }
+              }}
+              isActive={activeSubcategoryTab === "Concert Halls"}
+              linearProgressColor={getColorCode("Concert Halls", isPaid)}
+              tooltipTitle={
+                <TooltipTitleContainer
+                  buttonType="ReadMore"
+                  category="Cultural Facilities"
+                  title="No. of all live music venues"
+                  description="Any concert hall (venues with the main pupose of displaying classical music) based within the city's boundaries."
+                />
+              }
+            />
+          </Grid>
+          <Grid item xs={6} md={4} lg={3}>
+            <CircularProgressCard
+              title="Theme Parks"
+              progressbarValue={isPaid ? 55 : 100}
+              value={
+                isPaid
+                  ? cityIndicators?.find(
+                      ({ indicatorName }) => indicatorName === "Theme Parks"
+                    )?.count
+                  : `Buy ${getActiveCityName()} Data`
+              }
+              icon="Up"
+              valueColor={isPaid ? "" : "#44caf7"}
+              onClick={() => {
+                if (isPaid) {
+                  dispatch(setActiveSubcategoryTab("Theme Parks"));
+                  updateLayersVisibility(
+                    [KEPLER_LAYER_DATA_IDS.THEME_PARKS],
+                    visState.layers
+                  );
+                }
+              }}
+              isActive={activeSubcategoryTab === "Theme Parks"}
+              linearProgressColor={getColorCode("Theme Parks", isPaid)}
+              tooltipTitle={
+                <TooltipTitleContainer
+                  buttonType="ReadMore"
+                  category="Cultural Facilities"
+                  title="No. of Theme Parks per capita"
+                  description="Any Theme Parks based within the city's boundaries."
+                />
+              }
+            />
+          </Grid>
+        </>
+      )}
+      {activeCategoryTab === "Heritage Sites" && (
+        <Grid item xs={6} md={4} lg={3}>
+          <CircularProgressCard
+            title="World Heritage Sites"
+            progressbarValue={isPaid ? 43 : 100}
+            value={
+              isPaid
+                ? cityIndicators?.find(
+                    ({ indicatorName }) =>
+                      indicatorName === "World Heritage Sites"
+                  )?.count
+                : `Buy ${getActiveCityName()} Data`
+            }
+            valueColor={isPaid ? "" : "#44caf7"}
+            icon="Up"
+            onClick={() => {
+              if (isPaid) {
+                dispatch(setActiveSubcategoryTab("World Heritage Sites"));
+                updateLayersVisibility(
+                  [KEPLER_LAYER_DATA_IDS.WORLD_HERITAGE_SITES],
+                  visState.layers
+                );
+              }
+            }}
+            isActive={activeSubcategoryTab === "World Heritage Sites"}
+            linearProgressColor={getColorCode("World Heritage Sites", isPaid)}
+            tooltipTitle={
+              <TooltipTitleContainer
+                buttonType="ReadMore"
+                category="Heritage Sites"
+                title="No. of world heritage sites per capita"
+                description="Number of world heritage sites within the city's boundaries."
+              />
+            }
+          />
+        </Grid>
+      )}
+      {activeCategoryTab === "Accessibility To Culture" && (
+        <>
+          <Grid
+            item
+            xs={6}
+            md={4}
+            lg={3}
+            sx={{ maxWidth: "max-content !important" }}
+          >
+            <CircularProgressCard
+              title="Public Libraries per capita"
+              progressbarValue={isPaid ? 43 : 100}
+              value={
+                isPaid
+                  ? cityIndicators?.find(
+                      ({ indicatorName }) =>
+                        indicatorName === "Libraries Per Capita"
+                    )?.count
+                  : `Buy ${getActiveCityName()} Data`
+              }
+              valueColor={isPaid ? "" : "#44caf7"}
+              icon="Up"
+              onClick={() => {
+                isPaid &&
+                  dispatch(setActiveSubcategoryTab("Libraries Per Capita"));
+              }}
+              isActive={activeSubcategoryTab === "Libraries Per Capita"}
+              linearProgressColor={getColorCode("Libraries Per Capita", isPaid)}
+              tooltipTitle={
+                <TooltipTitleContainer
+                  buttonType="ReadMore"
+                  category="Accessibility To Culture"
+                  title="No. of libraries per capita"
+                  description="Number of libraries per capita."
+                />
+              }
+            />
+          </Grid>
+          <Grid
+            item
+            xs={6}
+            md={4}
+            lg={3}
+            sx={{ maxWidth: "max-content !important" }}
+          >
+            <CircularProgressCard
+              title="Museums per capita"
+              progressbarValue={isPaid ? 43 : 100}
+              value={
+                isPaid
+                  ? cityIndicators?.find(
+                      ({ indicatorName }) =>
+                        indicatorName === "Museums Per Capita"
+                    )?.count
+                  : `Buy ${getActiveCityName()} Data`
+              }
+              valueColor={isPaid ? "" : "#44caf7"}
+              icon="Up"
+              onClick={() => {
+                isPaid &&
+                  dispatch(setActiveSubcategoryTab("Museums Per Capita"));
+              }}
+              isActive={activeSubcategoryTab === "Museums Per Capita"}
+              linearProgressColor={getColorCode("Museums Per Capita", isPaid)}
+              tooltipTitle={
+                <TooltipTitleContainer
+                  buttonType="ReadMore"
+                  category="Accessibility To Culture"
+                  title="No. of museums per capita"
+                  description="Number of museums per capita."
+                />
+              }
+            />
+          </Grid>
+        </>
+      )}
+      {activeCategoryTab === "Culture And Creative Education" && (
+        <Grid item xs={6} md={4} lg={3}>
+          <CircularProgressCard
+            title="HE CCI Establishments"
+            progressbarValue={isPaid ? 43 : 100}
+            value={
+              isPaid
+                ? cityIndicators?.find(
+                    ({ indicatorName }) => indicatorName === "CCI He"
+                  )?.count
+                : `Buy ${getActiveCityName()} Data`
+            }
+            valueColor={isPaid ? "" : "#44caf7"}
+            icon="Up"
+            onClick={() => {
+              isPaid &&
+                dispatch(setActiveSubcategoryTab("HE CCI Establishments"));
+            }}
+            isActive={activeSubcategoryTab === "HE CCI Establishments"}
+            linearProgressColor={getColorCode("HE CCI Establishments", isPaid)}
+            tooltipTitle={
+              <TooltipTitleContainer
+                buttonType="ReadMore"
+                category="Culture And Creative Education"
+                title="HE CCI Establishments"
+                description="HE CCI Establishments"
+              />
+            }
+          />
+        </Grid>
+      )}
+
+      {activeCategoryTab === "Creative Employment" && (
+        <Grid item xs={6} md={4} lg={3}>
+          <CircularProgressCard
+            title="% FTE CCIs jobs in city"
+            titleStyles={{ textTransform: "capitalize" }}
+            progressbarValue={isPaid ? 43 : 100}
+            value={
+              isPaid
+                ? cityIndicators?.find(
+                    ({ indicatorName }) => indicatorName === "CCI Jobs"
+                  )?.count
+                : `Buy ${getActiveCityName()} Data`
+            }
+            valueColor={isPaid ? "" : "#44caf7"}
+            icon="Up"
+            onClick={() => {
+              if (isPaid) {
+                dispatch(setActiveSubcategoryTab("% FTE CCIs jobs in city"));
+                updateLayersVisibility(
+                  [KEPLER_LAYER_DATA_IDS.CCI_JOBS],
+                  visState.layers
+                );
+              }
+            }}
+            isActive={activeSubcategoryTab === "% FTE CCIs jobs in city"}
+            linearProgressColor={getColorCode(
+              "% FTE CCIs jobs in city",
+              isPaid
+            )}
+            tooltipTitle={
+              <TooltipTitleContainer
+                buttonType="ReadMore"
+                category="Creative Employment"
+                title="% FTE CCIs jobs in city"
+                description="% FTE CCIs jobs in city"
+              />
+            }
+          />
+        </Grid>
+      )}
+
+      {activeCategoryTab === "Innovation In Creative Industries" && (
+        <Grid item xs={6} md={4} lg={3}>
+          <CircularProgressCard
+            title="City % of CCI start-ups"
+            progressbarValue={isPaid ? 43 : 100}
+            value={
+              isPaid
+                ? cityIndicators?.find(
+                    ({ indicatorName }) => indicatorName === "Startups"
+                  )?.count
+                : `Buy ${getActiveCityName()} Data`
+            }
+            valueColor={isPaid ? "" : "#44caf7"}
+            icon="Up"
+            onClick={() => {
+              if (isPaid) {
+                dispatch(setActiveSubcategoryTab("City % of CCI start-ups"));
+                updateLayersVisibility(
+                  [KEPLER_LAYER_DATA_IDS.CCI_INNOVATION],
+                  visState.layers
+                );
+              }
+            }}
+            isActive={activeSubcategoryTab === "City % of CCI start-ups"}
+            linearProgressColor={getColorCode(
+              "City % of CCI start-ups",
+              isPaid
+            )}
+            tooltipTitle={
+              <TooltipTitleContainer
+                buttonType="ReadMore"
+                category="Innovation In Creative Industries"
+                title="City % of CCI start-ups"
+                description="City % of CCI start-ups"
+              />
+            }
+          />
+        </Grid>
+      )}
+    </Grid>
+  );
+};
+
+export default SubCategorySmallCards;
